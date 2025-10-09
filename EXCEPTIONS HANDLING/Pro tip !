@@ -1,0 +1,25 @@
+public class ExceptionsDemo4 {
+    public static void main(String[] args) {
+// When parent class exception is first used in catch block
+// then child class exception will throw error!
+
+//        try{
+//        int x=10/0;
+//        }catch (Exception e){
+//            System.out.println(e.getMessage());
+//        }catch (ArithmeticException e){
+//            System.out.println(e.getMessage());
+//        }
+
+
+// ALWAYS USE CHILD CLASS EXCEPTION BEFORE THE PARENT CLASS EXCEPTION!
+        try{
+            int x=10/0;
+        }catch(ArithmeticException e){
+            System.out.println(e.getMessage());
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+    }
+}
