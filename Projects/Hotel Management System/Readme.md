@@ -33,12 +33,14 @@ MySQL Connector/J
 1. Clone the repository
 
 bash
+
 git clone https://github.com/your-username/Hotel-Reservation-System.git
 cd Hotel-Reservation-System
 
 2. Database Setup
 
-sql
+sql:
+
 CREATE DATABASE hotel_db;
 USE hotel_db;
 
@@ -51,6 +53,7 @@ CREATE TABLE reservations (
 );
 
 3. Configure Database Connection
+
 Update the database credentials in HotelReservationSystem.java:
 
 java
@@ -59,6 +62,7 @@ private static final String username = "your_mysql_username";
 private static final String password = "your_mysql_password";
 
 4.Compile and Run
+
 bash
 javac HotelReservationSystem.java
 java HotelReservationSystem
