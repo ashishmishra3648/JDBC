@@ -13,7 +13,7 @@ public class Deletion {
         }catch (ClassNotFoundException e){
             System.out.println(e.getMessage());
         }
-
+//
         try{
             //STEP 2: CONNECTION ESTABLISHMENT
             Connection con=DriverManager.getConnection(url, username, password);
