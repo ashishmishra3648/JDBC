@@ -5,7 +5,7 @@ public class Update {
         String username="root";
         String password="10122001Am#";
         String query=("update employee set job_title='Data Scientist', salary=100000.0 where id =3;");
-
+//
         //STEP 1: DRIVER LOADING
         try {
             Class.forName("com.mysql.jdbc.Driver");
