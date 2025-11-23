@@ -80,9 +80,14 @@ CREATE TABLE student1 (
 WELCOME TO TECHNO SCHOOL
 
 Enter 1 to Save Student data
+
 Enter 2 to Update Student data
+
 Enter 3 to Fetch All Student data
+
 Enter 4 to Delete Student data
+
 Enter 5 to Close application
+
 Enter your choice:
 
