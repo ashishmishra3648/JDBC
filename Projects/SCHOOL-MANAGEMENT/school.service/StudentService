@@ -1,0 +1,94 @@
+package school.service;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import school.entity.Student;
+
+public class StudentService {
+    private static String url = "jdbc:postgresql://localhost:5432/school";
+    private static String user = "postgres";
+    private static String password = "123";
+    private static Connection conn;
+
+    static {
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int save(Student st) {
+        int res = 0;
+        String sql = "INSERT INTO student(id, name, age) VALUES (?, ?, ?)";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, st.getId());
+            pstm.setString(2, st.getName());
+            pstm.setInt(3, st.getAge());
+            res = pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public int update(Student st) {
+        int res = 0;
+        String sql = "UPDATE student SET age = ?, name = ? WHERE id = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, st.getAge());
+            pstm.setString(2, st.getName());
+            pstm.setInt(3, st.getId());
+            res = pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public List<Student> getAll() {
+        List<Student> list = new ArrayList<>();
+        String sql = "SELECT * FROM student";
+        try (PreparedStatement pstm = conn.prepareStatement(sql);
+             ResultSet rs = pstm.executeQuery()) {
+            while (rs.next()) {
+                list.add(new Student(rs.getInt("id"), rs.getString("name"), rs.getInt("age")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public int delete(int id) {
+        int res = 0;
+        String sql = "DELETE FROM student WHERE id = ?";
+        try (PreparedStatement pstm = conn.prepareStatement(sql)) {
+            pstm.setInt(1, id);
+            res = pstm.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public boolean close() {
+        boolean flag = false;
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+}
