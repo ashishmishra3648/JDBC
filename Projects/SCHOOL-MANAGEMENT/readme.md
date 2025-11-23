@@ -66,7 +66,7 @@ Set up PostgreSQL from [here](https://www.postgresql.org/download/) and ensure t
 
 - **Maven:**
 
-Create Database and Table : 
+### 4. Create Database and Table : 
 CREATE DATABASE school;
 \c school
 CREATE TABLE student1 (
@@ -76,7 +76,7 @@ CREATE TABLE student1 (
 );
 
 
-Output :
+### 5. Output :
 WELCOME TO TECHNO SCHOOL
 
 Enter 1 to Save Student data
